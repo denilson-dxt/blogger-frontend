@@ -1,0 +1,50 @@
+<div class="">
+    <form (ngSubmit)="onSubmit()" [formGroup]="postFormGroup">
+        <div class="flex flex-row">
+            <editor class="w-3/4" formControlName="editor" [init]="{ 
+                plugins: 'lists link image table code help wordcount'
+                
+            }">
+
+            </editor>
+            <section class="w-1/4 p-2">
+                <div class="w-full mb-2">
+                    <button class="p-2 w-auto hover:bg-red-500 bg-red-400 rounded mr-2">Cancel</button>
+                    <button class="p-2 w-2/4 hover:bg-teal-500 bg-teal-400 rounded">Create Post</button>
+                </div>
+                <div>
+                    <label for="title" class="sr-only">Title</label>
+                    <input id="title" name="title" type="text" autocomplete="title" required
+                        class="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                        placeholder="Post Title">
+                </div>
+                <div class="mt-2">
+                    <label for="slug" class="sr-only">Slug</label>
+                    <input id="slug" name="title" type="text" autocomplete="title" required
+                        class="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                        placeholder="Post slug">
+                </div>
+                <div>
+                    <span class="text-gray-500 text-sm">Category</span>
+                    <div class="flex flex-wrap">
+                        <div class="flex items-center mr-2">
+                            <input id="checked-checkbox" type="checkbox" value=""
+                                class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">IT</label>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <span class="text-gray-500 text-sm">Tags</span>
+                    <div class="flex flex-wrap">
+                        <div class="flex items-center mr-2">
+                            <input id="checked-checkbox" type="checkbox" value=""
+                                class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">#IT</label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </form>
+</div>

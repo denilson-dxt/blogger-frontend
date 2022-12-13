@@ -10,6 +10,8 @@ import { HomeComponent } from './components/pages/home/home.component';
 import { FooterComponent } from './components/layout/footer/footer.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { CreatePostComponent } from './components/pages/admin/create-post/create-post.component';
+import { EditorModule } from '@tinymce/tinymce-angular';
 
 @NgModule({
   declarations: [
@@ -18,13 +20,15 @@ import { HttpClientModule } from '@angular/common/http';
     RegisterComponent,
     HeaderComponent,
     HomeComponent,
-    FooterComponent
+    FooterComponent,
+    CreatePostComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    EditorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
