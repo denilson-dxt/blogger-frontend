@@ -12,6 +12,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CreatePostComponent } from './components/pages/admin/create-post/create-post.component';
 import { EditorModule } from '@tinymce/tinymce-angular';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { EditorModule } from '@tinymce/tinymce-angular';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    EditorModule
+    EditorModule,
+    StoreModule.forRoot({}, {}),
+    EffectsModule.forRoot([])
   ],
   providers: [],
   bootstrap: [AppComponent]
