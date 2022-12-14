@@ -20,6 +20,7 @@
     "@angular/router": "^14.2.0",
     "@ngrx/effects": "^14.3.2",
     "@ngrx/store": "^14.3.2",
+    "@ngrx/store-devtools": "^14.3.2",
     "@tinymce/tinymce-angular": "^7.0.0",
     "rxjs": "~7.5.0",
     "tinymce": "^6.3.1",
