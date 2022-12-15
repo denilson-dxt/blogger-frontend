@@ -22,6 +22,7 @@ import { TagEffect } from './store/effects/tag.effects';
 import { PostEffect } from './store/effects/post.effects';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
+import { CategoriesComponent } from './components/pages/categories/categories.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { DashboardComponent } from './components/pages/dashboard/dashboard.compo
     FooterComponent,
     CreatePostComponent,
     SidebarComponent,
-    DashboardComponent
+    DashboardComponent,
+    CategoriesComponent
   ],
   imports: [
     BrowserModule,

@@ -32,12 +32,13 @@ export class CreatePostComponent implements OnInit {
       categoriesId: new FormArray([]),
       tagsId: new FormArray([]),
     })
-    this.store.dispatch(getAllCategories());
+
     this.store.pipe(select(selectAllCategories)).subscribe(data => {
       this.categories$ = data;
       console.log(data);
 
     })
+    this.store.dispatch(getAllCategories());
     this.store.dispatch(getAllTags());
     this.store.pipe(select(selectAllTags)).subscribe(data => {
       this.tags$ = data;
