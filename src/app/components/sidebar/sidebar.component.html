@@ -1,0 +1,16 @@
+<div  [className]="'w-64 h-full bg-gray-800 flex-col  '+ (openSideBar$ ? 'flex' : 'hidden')">
+    <div>
+        <h3 class="text-center text-white">Blogger</h3>
+    </div>
+    <div class="pl-4 mt-1" *ngFor="let link of links">
+        <a routerLink="{{link.href}}">
+            <span class="text-zinc-300">{{link.name}}</span>
+        </a>
+        <div class="ml-4 mt-1" *ngIf="link.children.length > 0">
+            <div *ngFor="let subLink of link.children">
+                <a class="text-zinc-400" routerLink="{{subLink.href}}">{{subLink.name}}</a>
+            </div>
+        </div>
+    </div>
+    
+</div>

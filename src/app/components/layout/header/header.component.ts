@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { toggleSideBar } from 'src/app/store/actions/configs.actions';
+import { IAppState } from 'src/app/store/reducers';
 
 @Component({
   selector: 'app-header',
@@ -8,12 +11,12 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   showMenu = false;
-  constructor() { }
+  constructor(private store:Store<IAppState>) { }
 
   ngOnInit(): void {
   }
   toggleNavbar(){
-    this.showMenu = !this.showMenu;
+    this.store.dispatch(toggleSideBar());
   }
 
 }

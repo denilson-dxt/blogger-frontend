@@ -20,6 +20,8 @@ import { reducers } from './store/reducers';
 import { CategoryEffect } from './store/effects/categori.effects';
 import { TagEffect } from './store/effects/tag.effects';
 import { PostEffect } from './store/effects/post.effects';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { PostEffect } from './store/effects/post.effects';
     HeaderComponent,
     HomeComponent,
     FooterComponent,
-    CreatePostComponent
+    CreatePostComponent,
+    SidebarComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
