@@ -14,11 +14,25 @@ import { selectAllCategories } from 'src/app/store/selectors/category.selector';
 export class CategoriesComponent implements OnInit {
 
   categories$?:Observable<ICategory[]>;
+  filteredCategories:ICategory[] = [];
+  search:string = "";
   constructor(private store:Store<IAppState>) { }
 
   ngOnInit(): void {
     this.store.dispatch(getAllCategories());
     this.categories$ = this.store.pipe(select(selectAllCategories));
+    this.categories$.subscribe(categories => {
+      this.filteredCategories = categories;
+    })
   }
-
+  
+  onSearchInputChange(event$:any){
+    let value = event$.trim();
+    console.log(value);
+    this.categories$?.subscribe(data => {
+      this.filteredCategories =  data.filter(cat => {
+        return cat.description.includes(value) || cat.slug.includes(value);
+      })
+    })
+  }
 }

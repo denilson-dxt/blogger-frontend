@@ -8,7 +8,7 @@ import { RegisterComponent } from './components/pages/auth/register/register.com
 import { HeaderComponent } from './components/layout/header/header.component';
 import { HomeComponent } from './components/pages/home/home.component';
 import { FooterComponent } from './components/layout/footer/footer.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CreatePostComponent } from './components/pages/admin/create-post/create-post.component';
 import { EditorModule } from '@tinymce/tinymce-angular';
@@ -41,6 +41,7 @@ import { CategoriesComponent } from './components/pages/categories/categories.co
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    FormsModule,
     HttpClientModule,
     EditorModule,
     StoreModule.forRoot(reducers, {}),
