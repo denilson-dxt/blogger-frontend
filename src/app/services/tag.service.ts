@@ -8,13 +8,39 @@ import { ITag } from '../interfaces/tag';
   providedIn: 'root'
 })
 export class TagService {
+  private _tags_api_url = `${environment.api}/categories`;
 
-  constructor(private http:HttpClient) { }
-  getAllTags():Observable<ITag[]>{
+  constructor(private http: HttpClient) { }
+  getAllTags(): Observable<ITag[]> {
     return this.http.get<ITag[]>(`${environment.api}/tags`, {
       headers: {
         "Authorization": `Bearer ${localStorage.getItem("authToken")}`
       }
     });
+  }
+
+  createTag(data: ITag): Observable<ITag> {
+    return this.http.post<ITag>(this._tags_api_url, data, {
+      headers: {
+        "Authorization": `Bearer ${localStorage.getItem("authToken")}`
+      }
+    })
+  }
+
+  updateTag(data:ITag):Observable<ITag>{
+    return this.http.put<ITag>(this._tags_api_url, data, {
+      headers: {
+        "Authorization": `Bearer ${localStorage.getItem("authToken")}`
+      }
+    })
+  }
+
+  deleteTag(tagId:string):Observable<boolean>{
+    return this.http.request<boolean>("DELETE", this._tags_api_url, {
+      body: {id: tagId},
+      headers: {
+        "Authorization": `Bearer ${localStorage.getItem("authToken")}`
+      }
+    })
   }
 }
