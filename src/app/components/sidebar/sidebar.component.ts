@@ -23,7 +23,8 @@ export class SidebarComponent implements OnInit {
         { name: "Create new ", href: "./admin/posts/create", children: [] }
       ]
     },
-    { name: "Categories", href: "./admin/categories", children: [] }
+    { name: "Categories", href: "./admin/categories", children: [] },
+    {name: "Tags", href: "./admin/tags", children: []}
   ]
 
   visible: string = "flex";

@@ -24,6 +24,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
 import { CategoriesComponent } from './components/pages/categories/categories.component';
 import { CategoryFormComponent } from './components/forms/category-form/category-form.component';
+import { TagsComponent } from './components/pages/admin/tags/tags.component';
+import { TagFormComponent } from './components/forms/tag-form/tag-form.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { CategoryFormComponent } from './components/forms/category-form/category
     SidebarComponent,
     DashboardComponent,
     CategoriesComponent,
-    CategoryFormComponent
+    CategoryFormComponent,
+    TagsComponent,
+    TagFormComponent
   ],
   imports: [
     BrowserModule,
