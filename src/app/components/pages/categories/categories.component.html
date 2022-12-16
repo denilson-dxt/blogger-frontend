@@ -1,4 +1,4 @@
-<app-category-form (onFormClose)="closeCategoryForm()"  [isOpen]="isCategoryFormOpen" ></app-category-form>
+<app-category-form (onFormClose)="closeCategoryForm()" [category]="selectedCategory"  [isOpen]="isCategoryFormOpen" ></app-category-form>
 
 <div>
     <div class="w-full p-2 overflow-x-auto relative">
@@ -50,8 +50,8 @@
                         {{category.slug}}
                     </td>
                     <td>
-                        <button class="bg-red-400 hover:bg-red-300 text-gray-100 mr-2 w-24 h-8 rounded">Delete</button>
-                        <button class="bg-cyan-500 hover:bg-cyan-600 text-gray-100 w-24 h-8 rounded">Edit</button>
+                        <button  class="bg-red-400 hover:bg-red-300 text-gray-100 mr-2 w-24 h-8 rounded">Delete</button>
+                        <button (click)="onEditCategory(category)" class="bg-cyan-500 hover:bg-cyan-600 text-gray-100 w-24 h-8 rounded">Edit</button>
                     </td>
                 </tr>
             </tbody>

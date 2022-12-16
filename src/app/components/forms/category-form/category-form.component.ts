@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output, SimpleChange, SimpleCha
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { ICategory } from 'src/app/interfaces/category';
-import { createCategory } from 'src/app/store/actions/category.actions';
+import { createCategory, updateCategory } from 'src/app/store/actions/category.actions';
 import { IAppState } from 'src/app/store/reducers';
 
 @Component({
@@ -17,7 +17,7 @@ export class CategoryFormComponent implements OnInit {
   category?: ICategory;
 
   @Input()
-  isOpen:boolean = false;
+  isOpen: boolean = false;
 
   @Output()
   onFormClose = new EventEmitter();
@@ -44,14 +44,23 @@ export class CategoryFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.store.dispatch(createCategory({ category: this.categoryFormGroup.value }))
+    if(this.category == undefined)
+      this.store.dispatch(createCategory({ category: this.categoryFormGroup.value }))
+    else
+      this.store.dispatch(updateCategory({category: this.categoryFormGroup.value}))  
+
+    this.onFormClose.emit();
   }
-  submitForm() {  
+  submitForm() {
     this.categoryForm.ngSubmit.emit();
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    this.initializeCategoryForm();
 
-  closeForm():void{
+  }
+
+  closeForm(): void {
     this.onFormClose.emit();
   }
 }

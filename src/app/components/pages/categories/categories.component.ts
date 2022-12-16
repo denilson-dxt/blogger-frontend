@@ -13,6 +13,8 @@ import { selectAllCategories } from 'src/app/store/selectors/category.selector';
 })
 export class CategoriesComponent implements OnInit {
 
+  selectedCategory?:ICategory;
+
   @Output()
   isCategoryFormOpen:boolean = false;
   
@@ -42,9 +44,14 @@ export class CategoriesComponent implements OnInit {
     this.isCategoryFormOpen = true;
   }
   onNewCategory(){
+    this.selectedCategory = undefined;
       this.openCategoryForm();
   }
   closeCategoryForm(){
     this.isCategoryFormOpen = false;
+  }
+  onEditCategory(category:ICategory){
+    this.selectedCategory = category;
+    this.openCategoryForm();
   }
 }

@@ -4,7 +4,7 @@ import { catchError, exhaustMap, map, of } from "rxjs";
 import { Action } from "rxjs/internal/scheduler/Action";
 import { ICategory } from "src/app/interfaces/category";
 import { CategoryService } from "src/app/services/category.service";
-import { createCategory, createCategoryFailure, createCategorySuccess, getAllCategories, getAllCategoriesFailure, getAllCategoriesSuccess } from "../actions/category.actions";
+import { createCategory, createCategoryFailure, createCategorySuccess, getAllCategories, getAllCategoriesFailure, getAllCategoriesSuccess, updateCategory, updateCategoryFailure, updateCategorySuccess } from "../actions/category.actions";
 
 const cat: ICategory[] = [];
 
@@ -27,7 +27,7 @@ export class CategoryEffect {
   createCategory$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(createCategory),
-      exhaustMap(actions => {        
+      exhaustMap(actions => {
         return this.categoryService.createCategory(actions.category).pipe(
           map(category => createCategorySuccess({ category: category })),
           catchError(error => of(createCategoryFailure({ error: error })))
@@ -35,4 +35,13 @@ export class CategoryEffect {
       })
     )
   })
+
+  updateCategory$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(updateCategory),
+      exhaustMap(actions => this.categoryService.updateCategory(actions.category).pipe(
+        map(category => updateCategorySuccess({ category: category })),
+        catchError(error => of(updateCategoryFailure({ error: error })))
+      ))
+    ))
 }
