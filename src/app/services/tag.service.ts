@@ -8,7 +8,7 @@ import { ITag } from '../interfaces/tag';
   providedIn: 'root'
 })
 export class TagService {
-  private _tags_api_url = `${environment.api}/categories`;
+  private _tags_api_url = `${environment.api}/tags`;
 
   constructor(private http: HttpClient) { }
   getAllTags(): Observable<ITag[]> {
@@ -28,6 +28,8 @@ export class TagService {
   }
 
   updateTag(data:ITag):Observable<ITag>{
+    console.log(data);
+    
     return this.http.put<ITag>(this._tags_api_url, data, {
       headers: {
         "Authorization": `Bearer ${localStorage.getItem("authToken")}`

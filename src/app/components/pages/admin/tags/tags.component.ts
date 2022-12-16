@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { ITag } from 'src/app/interfaces/tag';
-import { getAllTags } from 'src/app/store/actions/tag.actions';
+import { deleteTag, getAllTags } from 'src/app/store/actions/tag.actions';
 import { IAppState } from 'src/app/store/reducers';
 import { selectAllTags } from 'src/app/store/selectors/tag.selectors';
 
@@ -48,9 +48,11 @@ export class TagsComponent implements OnInit {
     this.isTagFormOpen = true;
   }
   onDeleteTag(tagId:string){
-
+    this.store.dispatch(deleteTag({tagId: tagId}));
   }
   onEditTag(tag:ITag){
-
+    
+    this.selectedTag = tag;
+    this.isTagFormOpen = true;
   }
 }

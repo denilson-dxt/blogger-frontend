@@ -49,9 +49,9 @@ export const tagReducer = createReducer(
         return {...state}
     }),
     on(deleteTagSuccess, (state, {tagId})=>{
-        let tagsTmp = state.tags;
+        let tagsTmp:ITag[] = [...state.tags];
         let index = tagsTmp.findIndex(t => t.id == tagId);
-        tagsTmp.splice(index, 0);
+        tagsTmp.splice(index, 1);
         return {...state, tags: [...tagsTmp]}
     }),
     on(deleteTagFailure, (state)=>{
