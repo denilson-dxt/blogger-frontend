@@ -26,6 +26,8 @@ import { CategoriesComponent } from './components/pages/categories/categories.co
 import { CategoryFormComponent } from './components/forms/category-form/category-form.component';
 import { TagsComponent } from './components/pages/admin/tags/tags.component';
 import { TagFormComponent } from './components/forms/tag-form/tag-form.component';
+import { ListPostsComponent } from './components/pages/admin/posts/list-posts/list-posts.component';
+import { EditPostComponent } from './components/pages/admin/posts/edit-post/edit-post.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { TagFormComponent } from './components/forms/tag-form/tag-form.component
     CategoriesComponent,
     CategoryFormComponent,
     TagsComponent,
-    TagFormComponent
+    TagFormComponent,
+    ListPostsComponent,
+    EditPostComponent
   ],
   imports: [
     BrowserModule,

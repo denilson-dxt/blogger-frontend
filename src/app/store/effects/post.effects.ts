@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { catchError, exhaustMap, map, of } from "rxjs";
 import { PostService } from "src/app/services/post.service";
-import { createPost, createPostFailure, createPostSuccess } from "../actions/post.actions";
+import { createPost, createPostFailure, createPostSuccess, getAllPostFailure, getAllPosts, getAllPostsSuccess } from "../actions/post.actions";
 
 @Injectable()
 export class PostEffect{
@@ -17,4 +17,16 @@ export class PostEffect{
             )
         })
     ))
+
+    getAllPosts$ = createEffect(()=>{
+        return this.actions$.pipe(
+            ofType(getAllPosts),
+            exhaustMap(actions => {
+                return this.postService.getPosts().pipe(
+                    map(posts => getAllPostsSuccess({posts: posts})),
+                    catchError(error => of(getAllPostFailure({error: error})))
+                )
+            })
+        )
+    })
 }

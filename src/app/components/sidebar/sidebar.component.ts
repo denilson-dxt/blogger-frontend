@@ -18,8 +18,8 @@ export class SidebarComponent implements OnInit {
 
   links: ILink[] = [
     {
-      name: "Posts", href: "./admin/posts/list", children: [
-        {name: "List", href: "./admin/posts/list", children:[]},
+      name: "Posts", href: "./admin/posts/", children: [
+        {name: "List", href: "./admin/posts/", children:[]},
         { name: "Create new ", href: "./admin/posts/create", children: [] }
       ]
     },
