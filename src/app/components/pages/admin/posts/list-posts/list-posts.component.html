@@ -71,8 +71,8 @@
                         {{post.editedAt | date: 'short'}}
                     </td>
                     <td>
-                        <button  class="bg-red-400 hover:bg-red-300 text-gray-100 mr-2 w-24 h-8 rounded">Delete</button>
-                        <button class="bg-cyan-500 hover:bg-cyan-600 text-gray-100 w-24 h-8 rounded">Edit</button>
+                        <button (click)="onDeletePost(post.id)" class="bg-red-400 hover:bg-red-300 text-gray-100 mr-2 w-24 h-8 rounded">Delete</button>
+                        <button  class="bg-cyan-500 hover:bg-cyan-600 text-gray-100 w-24 h-8 rounded">Edit</button>
                     </td>
                 </tr>
             </tbody>

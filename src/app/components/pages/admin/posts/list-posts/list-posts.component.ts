@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IPost } from 'src/app/interfaces/post';
-import { getAllPosts } from 'src/app/store/actions/post.actions';
+import { deletePost, getAllPosts } from 'src/app/store/actions/post.actions';
 import { IAppState } from 'src/app/store/reducers';
 import { selectAllPosts } from 'src/app/store/selectors/post.selectors';
 
@@ -31,4 +31,7 @@ export class ListPostsComponent implements OnInit {
 
   }
 
+  onDeletePost(postId:string){
+    this.store.dispatch(deletePost({postId: postId}));
+  }
 }

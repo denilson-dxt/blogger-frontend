@@ -9,21 +9,31 @@ import { IPost } from '../interfaces/post';
 })
 export class PostService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
   private _posts_api_url = `${environment.api}/posts`;
 
-  createPost(data:any):Observable<IPost>{
+  createPost(data: any): Observable<IPost> {
     console.log(data);
-    
-      return this.http.post<IPost>(this._posts_api_url, JSON.stringify(data), {
-        headers: {
-          "Content-type": "application/json",
-          "Authorization": `Bearer ${localStorage.getItem("authToken")}`
-        }
-      })
-  } 
 
-  getPosts():Observable<IPost[]>{
+    return this.http.post<IPost>(this._posts_api_url, JSON.stringify(data), {
+      headers: {
+        "Content-type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("authToken")}`
+      }
+    })
+  }
+
+  getPosts(): Observable<IPost[]> {
     return this.http.get<IPost[]>(this._posts_api_url);
+  }
+
+  deletePost(postId: string): Observable<boolean> {
+    return this.http.request<boolean>("DELETE", this._posts_api_url, {
+      body: { id: postId },
+      headers: {
+        "Authorization": `Bearer ${localStorage.getItem("authToken")}`
+
+      }
+    })
   }
 }
