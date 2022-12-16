@@ -28,10 +28,10 @@
         <table class="w-full mt-4 text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 light:text-gray-400">
                 <tr>
-                    <th scope="col" class="py-3 px-6">
+                    <th scope="col" class="py-3 px-6 m-auto">
                         tag name
                     </th>
-                    <th scope="col" class="py-3 px-6">
+                    <th scope="col" class="py-3 px-6" align="right">
                         Actions
                     </th>
 
@@ -43,7 +43,7 @@
                     <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         {{tag.description}}
                     </th>
-                    <td>
+                    <td class="" align="right">
                         <button (click)="onDeleteTag(tag.id)" class="bg-red-400 hover:bg-red-300 text-gray-100 mr-2 w-24 h-8 rounded">Delete</button>
                         <button (click)="onEditTag(tag)" class="bg-cyan-500 hover:bg-cyan-600 text-gray-100 w-24 h-8 rounded">Edit</button>
                     </td>
