@@ -2,7 +2,7 @@ import { Component, OnInit, Output } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { ICategory } from 'src/app/interfaces/category';
-import { getAllCategories } from 'src/app/store/actions/category.actions';
+import { deleteCategory, getAllCategories } from 'src/app/store/actions/category.actions';
 import { IAppState } from 'src/app/store/reducers';
 import { selectAllCategories } from 'src/app/store/selectors/category.selector';
 
@@ -53,5 +53,8 @@ export class CategoriesComponent implements OnInit {
   onEditCategory(category:ICategory){
     this.selectedCategory = category;
     this.openCategoryForm();
+  }
+  onDeleteCategory(id:string){
+    this.store.dispatch(deleteCategory({categoryId: id}));
   }
 }

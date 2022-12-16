@@ -1,6 +1,7 @@
 import { createReducer, on } from "@ngrx/store";
+import { filter } from "rxjs";
 import { ICategory } from "src/app/interfaces/category";
-import { createCategory, createCategoryFailure, createCategorySuccess, getAllCategories, getAllCategoriesFailure, getAllCategoriesSuccess, updateCategory, updateCategoryFailure, updateCategorySuccess } from "../actions/category.actions";
+import { createCategory, createCategoryFailure, createCategorySuccess, deleteCategory, deleteCategoryFailure, deleteCategorySuccess, getAllCategories, getAllCategoriesFailure, getAllCategoriesSuccess, updateCategory, updateCategoryFailure, updateCategorySuccess } from "../actions/category.actions";
 
 export interface ICategoryState{
     categories: ICategory[];
@@ -44,6 +45,19 @@ export const categoryReducer = createReducer(
         return {...state, categories: [...categoriesTmp]}
     }),
     on(updateCategoryFailure, (state, {error})=>{
+        return {...state}
+    }),
+
+    on(deleteCategory, (state)=>{
+        return {...state}
+    }),
+    on(deleteCategorySuccess, (state, {categoryId}) => {
+        let categoriesTmp:ICategory[] = [...state.categories]
+        let index = categoriesTmp.findIndex(c => c.id == categoryId);
+        categoriesTmp.splice(index, 1);
+        return {...state, categories: [...categoriesTmp]}
+    }),
+    on(deleteCategoryFailure, (state) => {
         return {...state}
     })
 

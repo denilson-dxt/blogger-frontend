@@ -21,7 +21,7 @@ export class CategoryService {
   }
   createCategory(data: ICategory): Observable<ICategory> {
     console.log(data);
-    
+
     return this.http.post<ICategory>(this._categories_api_url, data, {
       headers: {
         "Authorization": `Bearer ${localStorage.getItem("authToken")}`
@@ -29,13 +29,23 @@ export class CategoryService {
     })
   }
 
-  updateCategory(data: ICategory):Observable<ICategory>{
+  updateCategory(data: ICategory): Observable<ICategory> {
     console.log(data);
-    
+
     return this.http.put<ICategory>(this._categories_api_url, data, {
       headers: {
         "Authorization": `Bearer ${localStorage.getItem("authToken")}`
       }
     });
+  }
+
+  deleteCategory(id: string): Observable<boolean> {
+    return this.http.request<boolean>("DELETE", this._categories_api_url, {
+      body: { id: id },
+      headers: {
+        "Authorization": `Bearer ${localStorage.getItem("authToken")}`
+
+      }
+    })
   }
 }

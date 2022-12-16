@@ -4,7 +4,7 @@ import { catchError, exhaustMap, map, of } from "rxjs";
 import { Action } from "rxjs/internal/scheduler/Action";
 import { ICategory } from "src/app/interfaces/category";
 import { CategoryService } from "src/app/services/category.service";
-import { createCategory, createCategoryFailure, createCategorySuccess, getAllCategories, getAllCategoriesFailure, getAllCategoriesSuccess, updateCategory, updateCategoryFailure, updateCategorySuccess } from "../actions/category.actions";
+import { createCategory, createCategoryFailure, createCategorySuccess, deleteCategory, deleteCategoryFailure, deleteCategorySuccess, getAllCategories, getAllCategoriesFailure, getAllCategoriesSuccess, updateCategory, updateCategoryFailure, updateCategorySuccess } from "../actions/category.actions";
 
 const cat: ICategory[] = [];
 
@@ -44,4 +44,14 @@ export class CategoryEffect {
         catchError(error => of(updateCategoryFailure({ error: error })))
       ))
     ))
+
+  deleteCategory$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(deleteCategory),
+      exhaustMap(actions => this.categoryService.deleteCategory(actions.categoryId).pipe(
+        map(status => deleteCategorySuccess({categoryId: actions.categoryId})),
+        catchError(error => of(deleteCategoryFailure({error: error})))
+      ))
+    )
+  })
 }

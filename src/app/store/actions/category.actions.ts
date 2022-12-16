@@ -13,3 +13,7 @@ export const createCategoryFailure = createAction("[Category] create category fa
 export const updateCategory = createAction("[Category] update category", props<{category:ICategory}>());
 export const updateCategorySuccess = createAction("[Category] update category success", props<{category:ICategory}>())
 export const updateCategoryFailure = createAction("[Category] update category failure", props<{error:any}>())
+
+export const deleteCategory = createAction("[Category] delete category", props<{categoryId:string}>());
+export const deleteCategorySuccess = createAction("[Category] delete category success", props<{categoryId:string}>())
+export const deleteCategoryFailure = createAction("[Category] delete category failure", props<{error:any}>())
