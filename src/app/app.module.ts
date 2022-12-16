@@ -17,12 +17,13 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { reducers } from './store/reducers';
-import { CategoryEffect } from './store/effects/categori.effects';
+import { CategoryEffect } from './store/effects/category.effects';
 import { TagEffect } from './store/effects/tag.effects';
 import { PostEffect } from './store/effects/post.effects';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
 import { CategoriesComponent } from './components/pages/categories/categories.component';
+import { CategoryFormComponent } from './components/forms/category-form/category-form.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { CategoriesComponent } from './components/pages/categories/categories.co
     CreatePostComponent,
     SidebarComponent,
     DashboardComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    CategoryFormComponent
   ],
   imports: [
     BrowserModule,

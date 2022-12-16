@@ -18,4 +18,13 @@ export class CategoryService {
       }
     });
   }
+  createCategory(data: ICategory): Observable<ICategory> {
+    console.log(data);
+    
+    return this.http.post<ICategory>(`${environment.api}/categories`, data, {
+      headers: {
+        "Authorization": `Bearer ${localStorage.getItem("authToken")}`
+      }
+    })
+  }
 }

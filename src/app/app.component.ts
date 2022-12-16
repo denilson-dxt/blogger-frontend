@@ -10,9 +10,7 @@ export class AppComponent {
   title = 'blogger';
   constructor(private router:Router){}
 
-  isAdminRoute():boolean{
-    console.log(this.router.url);
-    
+  isAdminRoute():boolean{    
     return this.router.url.startsWith("/admin")
   }
 }

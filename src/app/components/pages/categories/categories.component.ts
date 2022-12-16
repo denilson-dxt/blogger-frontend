@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { ICategory } from 'src/app/interfaces/category';
@@ -13,6 +13,9 @@ import { selectAllCategories } from 'src/app/store/selectors/category.selector';
 })
 export class CategoriesComponent implements OnInit {
 
+  @Output()
+  isCategoryFormOpen:boolean = false;
+  
   categories$?:Observable<ICategory[]>;
   filteredCategories:ICategory[] = [];
   search:string = "";
@@ -34,5 +37,14 @@ export class CategoriesComponent implements OnInit {
         return cat.description.includes(value) || cat.slug.includes(value);
       })
     })
+  }
+  openCategoryForm():void{
+    this.isCategoryFormOpen = true;
+  }
+  onNewCategory(){
+      this.openCategoryForm();
+  }
+  closeCategoryForm(){
+    this.isCategoryFormOpen = false;
   }
 }

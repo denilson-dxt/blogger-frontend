@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { ICategory } from "src/app/interfaces/category";
-import { getAllCategories, getAllCategoriesFailure, getAllCategoriesSuccess } from "../actions/category.actions";
+import { createCategory, createCategoryFailure, createCategorySuccess, getAllCategories, getAllCategoriesFailure, getAllCategoriesSuccess } from "../actions/category.actions";
 
 export interface ICategoryState{
     categories: ICategory[];
@@ -20,5 +20,16 @@ export const categoryReducer = createReducer(
     }),
     on(getAllCategoriesFailure, (state, {error}) => {
         return {...state};
+    }),
+
+    on(createCategory, (state) => {
+        return {...state}
+    }),
+    on(createCategorySuccess, (state, {category})=>{
+        return {...state, categories: [...state.categories, category]}
+    }),
+    on(createCategoryFailure, (state, {error})=>{
+        return {...state}
     })
+
 )

@@ -1,5 +1,6 @@
-<div>
+<app-category-form (onFormClose)="closeCategoryForm()"  [isOpen]="isCategoryFormOpen" ></app-category-form>
 
+<div>
     <div class="w-full p-2 overflow-x-auto relative">
         <h3 class="mb-2 text-xl text-gray-500">Categories</h3>
         <div class="w-full h-12 flex">
@@ -21,7 +22,7 @@
                 </div>
             </form>
             <div>
-                <button class="bg-cyan-500 h-11 px-2 ml-2 rounded text-gray-100">New category</button>
+                <button (click)="onNewCategory()" class="bg-cyan-500 h-11 px-2 ml-2 rounded text-gray-100">New category</button>
             </div>
         </div>
         <table class="w-full mt-4 text-sm text-left text-gray-500 dark:text-gray-400">
