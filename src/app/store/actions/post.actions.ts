@@ -11,7 +11,7 @@ export const getAllPostFailure = createAction("[Post] get all posts failure", pr
 
 export const updatePost = createAction("[Post] update post", props<{post:IPost}>())
 export const updatePostSuccess = createAction("[Post] update post success", props<{post: IPost}>())
-export const updatePostFailure = createAction("[Post] update post failure", props<{post: IPost}>());
+export const updatePostFailure = createAction("[Post] update post failure", props<{error: any}>());
 
 export const deletePost = createAction("[Post] delete post", props<{postId: string}>());
 export const deletePostSuccess = createAction("[Post] delete post success", props<{postId:string}>());

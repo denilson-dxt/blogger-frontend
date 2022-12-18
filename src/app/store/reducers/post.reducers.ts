@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { IPost } from "src/app/interfaces/post";
-import { createPost, createPostFailure, createPostSuccess, deletePost, deletePostFailure, deletePostSuccess, getAllPostFailure, getAllPosts, getAllPostsSuccess } from "../actions/post.actions";
+import { createPost, createPostFailure, createPostSuccess, deletePost, deletePostFailure, deletePostSuccess, getAllPostFailure, getAllPosts, getAllPostsSuccess, updatePost, updatePostFailure, updatePostSuccess } from "../actions/post.actions";
 
 export interface IPostState{
     posts:IPost[]
@@ -22,6 +22,15 @@ export const postReducer = createReducer(
         return {...state}
     }),
 
+    on(updatePost, (state) => {
+        return {...state}
+    }),
+    on(updatePostSuccess, (state, {post}) => {
+        return {...state, posts: [...state.posts, post]}
+    }),
+    on(updatePostFailure, (state, {error}) => {
+        return {...state}
+    }),
 
     on(getAllPosts, (state) => {
         return {...state}

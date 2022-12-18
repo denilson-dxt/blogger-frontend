@@ -10,7 +10,7 @@ import { HomeComponent } from './components/pages/home/home.component';
 import { FooterComponent } from './components/layout/footer/footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { CreatePostComponent } from './components/pages/admin/create-post/create-post.component';
+import { CreatePostComponent } from './components/pages/admin/posts/create-post/create-post.component';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -28,6 +28,7 @@ import { TagsComponent } from './components/pages/admin/tags/tags.component';
 import { TagFormComponent } from './components/forms/tag-form/tag-form.component';
 import { ListPostsComponent } from './components/pages/admin/posts/list-posts/list-posts.component';
 import { EditPostComponent } from './components/pages/admin/posts/edit-post/edit-post.component';
+import { PostFormComponent } from './components/forms/post-form/post-form.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { EditPostComponent } from './components/pages/admin/posts/edit-post/edit
     TagsComponent,
     TagFormComponent,
     ListPostsComponent,
-    EditPostComponent
+    EditPostComponent,
+    PostFormComponent
   ],
   imports: [
     BrowserModule,

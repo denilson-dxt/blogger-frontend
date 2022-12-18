@@ -22,6 +22,18 @@ export class PostService {
       }
     })
   }
+  updatePost(data: any): Observable<IPost> {
+    console.log(data);
+
+    return this.http.put<IPost>(this._posts_api_url, JSON.stringify(data), {
+      headers: {
+        "Content-type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("authToken")}`
+      }
+    })
+  }
+
+
 
   getPosts(): Observable<IPost[]> {
     return this.http.get<IPost[]>(this._posts_api_url);

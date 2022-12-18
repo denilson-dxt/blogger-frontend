@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CreatePostComponent } from './components/pages/admin/create-post/create-post.component';
+import { CreatePostComponent } from './components/pages/admin/posts/create-post/create-post.component';
+import { EditPostComponent } from './components/pages/admin/posts/edit-post/edit-post.component';
 import { ListPostsComponent } from './components/pages/admin/posts/list-posts/list-posts.component';
 import { TagsComponent } from './components/pages/admin/tags/tags.component';
 import { LoginComponent } from './components/pages/auth/login/login.component';
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: "admin", component:DashboardComponent},
   {path: "admin/posts", component: ListPostsComponent},
   {path: "admin/posts/create", component: CreatePostComponent},
+  {path: "admin/posts/edit/:id", component: EditPostComponent},
   {path: "admin/categories", component:CategoriesComponent},
   {path: "admin/tags", component: TagsComponent},
 ];
