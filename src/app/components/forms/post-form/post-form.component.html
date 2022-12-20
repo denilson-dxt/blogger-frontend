@@ -1,7 +1,7 @@
-<div class="">
-    <form (ngSubmit)="onSubmit()" [formGroup]="postFormGroup">
-        <div class="flex flex-row">
-            <editor class="w-3/4" formControlName="content" [init]="{ 
+<div class="w-full h-full">
+    <form class="w-full h-full" (ngSubmit)="onSubmit()" [formGroup]="postFormGroup">
+        <div class="flex h-full w-full flex-row">
+            <editor class="w-3/4 h-full" formControlName="content" [init]="{ 
                 plugins: 'lists link image table code help wordcount'
                 
             }">

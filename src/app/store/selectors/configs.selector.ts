@@ -3,3 +3,4 @@ import { IConfigState } from "../reducers/configs.reducers";
 
 const configsSelector = createFeatureSelector<IConfigState>("configs");
 export const selectToggleSideBar = createSelector(configsSelector, state => state.openSideBar);
+export const selectIsFileModalOpen = createSelector(configsSelector, state => state.isFilesModalOpen);

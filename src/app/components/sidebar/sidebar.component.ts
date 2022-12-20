@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
+import { toggleFilesModal } from 'src/app/store/actions/configs.actions';
 import { IAppState } from 'src/app/store/reducers';
 import { selectToggleSideBar } from 'src/app/store/selectors/configs.selector';
 
@@ -37,4 +38,7 @@ export class SidebarComponent implements OnInit {
     })
   }
 
+  openFilesModal(){
+    this.store.dispatch(toggleFilesModal());
+  }
 }

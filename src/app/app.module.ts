@@ -29,6 +29,8 @@ import { TagFormComponent } from './components/forms/tag-form/tag-form.component
 import { ListPostsComponent } from './components/pages/admin/posts/list-posts/list-posts.component';
 import { EditPostComponent } from './components/pages/admin/posts/edit-post/edit-post.component';
 import { PostFormComponent } from './components/forms/post-form/post-form.component';
+import { FilesComponent } from './components/files/files.component';
+import { FilesEffect } from './store/effects/files.effect';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,8 @@ import { PostFormComponent } from './components/forms/post-form/post-form.compon
     TagFormComponent,
     ListPostsComponent,
     EditPostComponent,
-    PostFormComponent
+    PostFormComponent,
+    FilesComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +60,7 @@ import { PostFormComponent } from './components/forms/post-form/post-form.compon
     HttpClientModule,
     EditorModule,
     StoreModule.forRoot(reducers, {}),
-    EffectsModule.forRoot([CategoryEffect, TagEffect, PostEffect]),
+    EffectsModule.forRoot([CategoryEffect, TagEffect, PostEffect, FilesEffect]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     
   ],
