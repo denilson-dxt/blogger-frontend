@@ -8,7 +8,7 @@ export interface IConfigState{
 
 const initialState:IConfigState = {
     openSideBar: true,
-    isFilesModalOpen: true
+    isFilesModalOpen: false
 }
 
 export const configsReducers = createReducer(
