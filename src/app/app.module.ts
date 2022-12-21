@@ -31,6 +31,8 @@ import { EditPostComponent } from './components/pages/admin/posts/edit-post/edit
 import { PostFormComponent } from './components/forms/post-form/post-form.component';
 import { FilesComponent } from './components/files/files.component';
 import { FilesEffect } from './store/effects/files.effect';
+import { ClientSidebarComponent } from './components/layout/client-sidebar/client-sidebar.component';
+import { PostPreviewComponent } from './components/post-preview/post-preview.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,9 @@ import { FilesEffect } from './store/effects/files.effect';
     ListPostsComponent,
     EditPostComponent,
     PostFormComponent,
-    FilesComponent
+    FilesComponent,
+    ClientSidebarComponent,
+    PostPreviewComponent
   ],
   imports: [
     BrowserModule,

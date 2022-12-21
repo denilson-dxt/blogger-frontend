@@ -4,6 +4,7 @@ import { ITag } from "./tag";
 export interface IPost{
     id:string;
     title:string;
+    shortDescription:string;
     slug:string;
     publishedAt:Date;
     editedAt:Date;
@@ -11,6 +12,5 @@ export interface IPost{
     content:string;
     user:any;
     categories:ICategory[];
-    tags: ITag[]
-
+    tags: ITag[];
 }

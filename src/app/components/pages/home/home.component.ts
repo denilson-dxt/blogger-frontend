@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
+import { IPost } from 'src/app/interfaces/post';
+import { getAllPosts } from 'src/app/store/actions/post.actions';
+import { selectAllPosts } from 'src/app/store/selectors/post.selectors';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +11,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+posts:IPost[] = [];
+  constructor(private store:Store) { }
 
   ngOnInit(): void {
+    this.store.dispatch(getAllPosts());
+    this.store.pipe(select(selectAllPosts)).subscribe(posts => {
+      this.posts = [...posts];
+    })
   }
 
 }

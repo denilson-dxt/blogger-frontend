@@ -1,1 +1,6 @@
-<p>home works!</p>
+<div class="w-full flex h-full p-12">
+    <main class="w-3/4 flex flex-wrap h-full">
+        <app-post-preview [post]="post" *ngFor="let post of posts" ></app-post-preview>
+    </main>
+    <app-client-sidebar></app-client-sidebar>
+</div>
