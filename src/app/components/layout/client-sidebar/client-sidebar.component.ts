@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./client-sidebar.component.css']
 })
 export class ClientSidebarComponent implements OnInit {
+getImageAsBackgroundUrl(src: string): any {
+  return `url('${src}')`;
+}
 
   constructor() { }
 
