@@ -1,4 +1,4 @@
-<section class="size flex">
+<section class="size flex flex-col">
     <div class="flex p-8 items-center justify-center flex-col bg-color">
         <div class="w-full h-72 flex items-end justify-end bg-cover"  [ngStyle]="{'background-image': getImageAsBackgroundUrl('https://preview.colorlib.com/theme/bounty/img/blog/user2.png')}">
             <div class="w-full flex justify-center mb-6">
@@ -10,5 +10,26 @@
         <h3 class="w-full mb-4 mt-4 text-white">Denilson Tivane</h3>
         <hr class="w-full mb-3" >
         <p class="desc text-sm ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem nostrum harum ipsam! Ab eligendi quam blanditiis culpa? Sequi illo dignissimos quam sit, at possimus vel accusantium voluptates consequuntur vitae vero.</p>
+    </div>
+    <div class="mt-8 flex p-8 items-center justify-center flex-col bg-color">
+        <h1 class="w-full text-white mb-4">Post categories</h1>
+        <hr class="w-full mb-3" >
+
+        <div class="w-full">
+            <div *ngFor="let category of categories" class="flex items-center mb-1 hover:text-white cursor-pointer">
+                <div class="bg-white w-3 mr-6 social-medium-bg h-3"></div>
+                <span class="desc">{{category.description}} <span class="">(57)</span></span>
+            </div>
+        </div>
+    </div>
+    <div class="mt-8 flex p-8 items-center justify-center flex-col bg-color">
+        <h1 class="w-full text-white mb-4">Post Tags</h1>
+        <hr class="w-full mb-3" >
+
+        <div class="w-full flex flex-wrap">
+            <div *ngFor="let tag of tags" class="p-1 mr-1 tag w-auto mb-1 hover:text-white cursor-pointer">
+                <span class="w-auto">{{tag.description}}</span>
+            </div>
+        </div>
     </div>
 </section>

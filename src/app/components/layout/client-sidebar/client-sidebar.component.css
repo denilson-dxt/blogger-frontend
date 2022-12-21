@@ -16,3 +16,12 @@
 .social-medium-bg:hover{
     background-color: #828baed2;
 }
+
+.tag{
+    background-color: rgba(130, 139, 178, 0.3);
+    color: #828bb2;
+}
+.tag:hover{
+    background-color: rgba(130, 139, 178, 0.5);
+    color: white;
+}
