@@ -33,6 +33,7 @@ import { FilesComponent } from './components/files/files.component';
 import { FilesEffect } from './store/effects/files.effect';
 import { ClientSidebarComponent } from './components/layout/client-sidebar/client-sidebar.component';
 import { PostPreviewComponent } from './components/post-preview/post-preview.component';
+import { PostDetailsComponent } from './components/pages/post-details/post-details.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { PostPreviewComponent } from './components/post-preview/post-preview.com
     PostFormComponent,
     FilesComponent,
     ClientSidebarComponent,
-    PostPreviewComponent
+    PostPreviewComponent,
+    PostDetailsComponent
   ],
   imports: [
     BrowserModule,

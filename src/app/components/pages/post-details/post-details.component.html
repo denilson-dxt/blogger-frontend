@@ -1,0 +1,24 @@
+<div *ngIf="post" class="w-full  flex p-12 max-w-screen-xl">
+    <main class="w-3/4 flex flex-wrap h-full">
+        <div class="w-full flex-col shadow-xl shadow-slate-100 preview bg-cover flex items-end justify-end bg-center mb-2 mr-4 mb-28">
+            <div class="w-full bg-white">
+                <img class="max-h-full min-w-full" src="{{post.image}}" alt="post image">
+                <h1 class="w-full mb-8 mt-8 text-4xl  ">{{post.title}}</h1>
+            </div>
+            <div class="flex w-full mb-8">
+                <div class="flex">
+                    <span class="tag-bg p-1 px-2 h-8 text-sm uppercase mr-2 rounded-full" *ngFor="let tag of post.tags">{{tag.description}}</span>
+                </div>
+                <div class="w-full flex justify-end">
+                    <div class="flex flex-col">
+                        <span class="text-sm text-right">{{post.user.userName}}</span>
+                        <span class="text-xs text-right">{{post.publishedAt | date}}</span>
+                    </div>
+                    <img class="ml-4 h-8" src="{{host}}/files/{{post.user.profilePicture}}" alt="">
+                </div>
+            </div>
+            <div [innerHTML]="format(post.content)" id="content"></div>
+        </div>
+    </main>
+    <app-client-sidebar></app-client-sidebar>
+</div>

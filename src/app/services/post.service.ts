@@ -39,6 +39,10 @@ export class PostService {
     return this.http.get<IPost[]>(this._posts_api_url);
   }
 
+  getPostBySlug(slug:string):Observable<IPost>{
+    return this.http.get<IPost>(`${this._posts_api_url}/${slug}`);
+  }
+
   deletePost(postId: string): Observable<boolean> {
     return this.http.request<boolean>("DELETE", this._posts_api_url, {
       body: { id: postId },
