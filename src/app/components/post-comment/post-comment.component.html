@@ -1,0 +1,18 @@
+<div class="w-full mb-8">
+    <div class="flex w-full gap-4">
+        <img class="h-16 w-16" src="{{comment.owner.profilePicture}}" alt="">
+        <div class="flex flex-col w-full">
+            <div class="flex w-full">
+                <div class="flex w-full flex-col">
+                    <span class="text-[#415094] font-bold">{{comment.owner.userName}}</span>
+                    <span class="text-xs text-[#ccc]">{{comment.publishedAt | date}}</span>
+                </div>
+                <button
+                    class="self-start p-1 px-4 uppercase text-xs hover:bg-[#7c32ff] hover:text-white border-[1px] rounded text-[#415094] border-[#ddd] bg-[#f9f9ff]">Reply</button>
+
+            </div>
+            <div class="mt-2 text-[#777]">{{comment.content}}</div>
+
+        </div>
+    </div>
+</div>

@@ -19,6 +19,13 @@
             </div>
             <div [innerHTML]="format(post.content)" id="content"></div>
         </div>
+        <div class="w-full">
+            <h3 class="text-xl">Comments</h3>
+
+            <div class="mt-4 w-full">
+                <app-post-comment *ngFor="let comment of post.comments" [comment]="comment"></app-post-comment>
+            </div>
+        </div>
     </main>
     <app-client-sidebar></app-client-sidebar>
 </div>

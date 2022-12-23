@@ -1,4 +1,5 @@
 import { ICategory } from "./category";
+import { IComment } from "./comment";
 import { ITag } from "./tag";
 
 export interface IPost{
@@ -13,4 +14,5 @@ export interface IPost{
     user:any;
     categories:ICategory[];
     tags: ITag[];
+    comments:IComment[];
 }
