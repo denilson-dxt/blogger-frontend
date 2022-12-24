@@ -14,7 +14,7 @@
                         <span class="text-sm text-right">{{post.user.userName}}</span>
                         <span class="text-xs text-right">{{post.publishedAt | date}}</span>
                     </div>
-                    <img class="ml-4 h-8" src="{{host}}/files/{{post.user.profilePicture}}" alt="">
+                    <img class="ml-4 h-8" src="{{post.user.profilePicture}}" alt="">
                 </div>
             </div>
             <div [innerHTML]="format(post.content)" id="content"></div>
