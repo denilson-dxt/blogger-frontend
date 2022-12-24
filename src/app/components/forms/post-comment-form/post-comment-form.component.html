@@ -1,0 +1,7 @@
+<div class="w-full">
+    <h3 class="text-xl">Leave a comment</h3>
+    <form [formGroup]="formGroup" (ngSubmit)="onCommentFormSubmmit()" class="mt-10 flex flex-wrap justify-end">
+        <textarea formControlName="content" class="border-[1px] border-[#DDD] w-full bg-[#f9f9ff] p-4 text-[14px]" rows="6" placeholder="MESSAGE"></textarea>
+        <button type="submit" class="mt-4 px-5 py-4 t transition-colors hover:bg-transparent hover:text-black border-[1px] border-[#7c32ff] text-xs text-white font-bold rounded bg-[#7c32ff]">SEND COMMENT</button>
+    </form>
+</div>

@@ -1,12 +1,13 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { catchError, exhaustMap, map, of } from "rxjs";
+import { CommentService } from "src/app/services/comment.service";
 import { PostService } from "src/app/services/post.service";
-import { createPost, createPostFailure, createPostSuccess, deletePost, deletePostFailure, deletePostSuccess, getAllPostFailure, getAllPosts, getAllPostsSuccess, updatePost, updatePostFailure, updatePostSuccess } from "../actions/post.actions";
+import { addComemntFailure, addComment, addCommentSuccess, createPost, createPostFailure, createPostSuccess, deletePost, deletePostFailure, deletePostSuccess, getAllPostFailure, getAllPosts, getAllPostsSuccess, updatePost, updatePostFailure, updatePostSuccess } from "../actions/post.actions";
 
 @Injectable()
 export class PostEffect {
-    constructor(private postService: PostService, private actions$: Actions) { }
+    constructor(private postService: PostService,private commentService:CommentService, private actions$: Actions) { }
 
     createPost$ = createEffect(() => this.actions$.pipe(
         ofType(createPost),
@@ -49,4 +50,14 @@ export class PostEffect {
             ))
         )
     })
+
+    addComment$ = createEffect(() => this.actions$.pipe(
+        ofType(addComment),
+        exhaustMap(actions => {
+            return this.commentService.postComment({postId: actions.postId, content: actions.content}).pipe(
+                map(comment => addCommentSuccess({postId: actions.postId, comment: comment})),
+                catchError(error => of(addComemntFailure({error: error})))
+            )
+        })
+    ))
 }

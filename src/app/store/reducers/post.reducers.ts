@@ -1,13 +1,14 @@
 import { createReducer, on } from "@ngrx/store";
 import { IPost } from "src/app/interfaces/post";
-import { createPost, createPostFailure, createPostSuccess, deletePost, deletePostFailure, deletePostSuccess, getAllPostFailure, getAllPosts, getAllPostsSuccess, getPostBySlug, getPostBySlugSuccess, updatePost, updatePostFailure, updatePostSuccess } from "../actions/post.actions";
+import { addComemntFailure, addComment, addCommentSuccess, createPost, createPostFailure, createPostSuccess, deletePost, deletePostFailure, deletePostSuccess, getAllPostFailure, getAllPosts, getAllPostsSuccess, getPostBySlug, getPostBySlugSuccess, setActualPost, setActualPostFailure, updatePost, updatePostFailure, updatePostSuccess } from "../actions/post.actions";
 
 export interface IPostState{
-    posts:IPost[]
+    posts:IPost[],
+    actualPost?:IPost,
 }
 
 const initialState:IPostState = {
-    posts:[]
+    posts:[],
 }
 
 export const postReducer = createReducer(
@@ -20,6 +21,11 @@ export const postReducer = createReducer(
     }),
     on(createPostFailure, (state, {error}) => {
         return {...state}
+    }),
+    
+    
+    on(setActualPost, (state, {post}) => {
+        return {...state, actualPost: post}
     }),
 
     on(updatePost, (state) => {
@@ -52,6 +58,20 @@ export const postReducer = createReducer(
         return {...state, posts: [...postsTmp]}
     }),
     on(deletePostFailure, (state, {error})=>{
+        return {...state}
+    }),
+
+
+    on(addComment, (state) => {
+        return {...state}
+    }),
+    on(addCommentSuccess, (state, {postId, comment}) => {
+        let actualPostTmp:IPost = {...state.actualPost!};
+        actualPostTmp.comments = [...actualPostTmp.comments, comment];
+        
+        return {...state, actualPost: {...actualPostTmp}}
+    }),
+    on(addComemntFailure, (state) => {
         return {...state}
     })
 )

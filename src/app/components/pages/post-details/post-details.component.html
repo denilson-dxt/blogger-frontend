@@ -26,6 +26,7 @@
                 <app-post-comment *ngFor="let comment of post.comments" [comment]="comment"></app-post-comment>
             </div>
         </div>
+        <app-post-comment-form (onFormSubmited)="onCommentFormSubmmit($event)" class="w-full"></app-post-comment-form>
     </main>
     <app-client-sidebar></app-client-sidebar>
 </div>

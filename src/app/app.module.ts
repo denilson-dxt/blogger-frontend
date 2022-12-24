@@ -35,6 +35,7 @@ import { ClientSidebarComponent } from './components/layout/client-sidebar/clien
 import { PostPreviewComponent } from './components/post-preview/post-preview.component';
 import { PostDetailsComponent } from './components/pages/post-details/post-details.component';
 import { PostCommentComponent } from './components/post-comment/post-comment.component';
+import { PostCommentFormComponent } from './components/forms/post-comment-form/post-comment-form.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { PostCommentComponent } from './components/post-comment/post-comment.com
     ClientSidebarComponent,
     PostPreviewComponent,
     PostDetailsComponent,
-    PostCommentComponent
+    PostCommentComponent,
+    PostCommentFormComponent
   ],
   imports: [
     BrowserModule,
