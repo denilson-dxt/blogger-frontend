@@ -6,6 +6,7 @@ import { ILoginData } from '../interfaces/login-data';
 import { environment } from 'src/environments/environment';
 import { IRegisterData } from '../interfaces/register-data';
 import { IRegisterResponse } from '../interfaces/register-response';
+import { IUser } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -18,9 +19,9 @@ export class AuthService {
     return this.http.post<ILoginResponse>(`${environment.api}/auth/login`, data);
   }
 
-  register(data:FormData):Observable<IRegisterResponse>{
+  register(data:FormData):Observable<IUser>{
     console.log("Service", data);
     
-    return this.http.post<IRegisterResponse>(`${environment.api}/auth/register`, data);
+    return this.http.post<IUser>(`${environment.api}/auth/register`, data);
   }
 }

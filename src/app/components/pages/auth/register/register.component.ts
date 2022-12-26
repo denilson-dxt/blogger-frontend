@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { select, Store } from '@ngrx/store';
+import { IRegisterError } from 'src/app/interfaces/register-error';
 import { AuthService } from 'src/app/services/auth.service';
+import { SIGN_UP } from 'src/app/store/actions/auth.actions';
+import { IAppState } from 'src/app/store/reducers';
+import { SELECT_SIGNUP_ERRORS } from 'src/app/store/selectors/auth.selectors';
 
 @Component({
   selector: 'app-register',
@@ -10,10 +15,14 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class RegisterComponent implements OnInit {
   registerForm!:FormGroup;
-  constructor(private authService:AuthService, private router:Router) { }
+  registerError?:IRegisterError = {};
+  constructor(private authService:AuthService, private router:Router, private store:Store<IAppState>) { }
 
   ngOnInit(): void {
     this._initializeForm();
+    this.store.pipe(select(SELECT_SIGNUP_ERRORS)).subscribe(errors => {
+      this.registerError = errors;
+    })
   }
 
   private _initializeForm(){
@@ -44,10 +53,9 @@ export class RegisterComponent implements OnInit {
     formData.append("profilePicture", this.registerForm.get("profilePicture")?.value);
     console.log(this.registerForm.value);
     
-    this.authService.register(formData).subscribe(data =>{
-      console.log(data);
-      this.router.navigate(["/auth/login"])
-    });
+
+
+    this.store.dispatch(SIGN_UP({payload: formData}));
   }
 
 }
