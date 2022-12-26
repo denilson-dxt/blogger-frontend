@@ -26,24 +26,24 @@
                                 class="ml-2">Contact-us</span>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li *ngIf="!isAuthenticated" class="nav-item">
                         <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
                             routerLink="/auth/login">
                             <i class="fab fa-pinterest text-lg leading-lg text-white opacity-75"></i><span
                                 class="ml-2">Login</span>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li *ngIf="!isAuthenticated" class="nav-item">
                         <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
                             routerLink="/auth/register">
                             <i class="fab fa-pinterest text-lg leading-lg text-white opacity-75"></i><span
                                 class="ml-2">Register</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                            routerLink="/auth/register"><span class="ml-2 text-red-400">Logout</span>
-                        </a>
+                    <li *ngIf="isAuthenticated" class="nav-item">
+                        <button class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                            (click)="logout()"><span class="ml-2 text-red-400">Logout</span>
+                        </button>
                     </li>
                 </ul>
             </div>

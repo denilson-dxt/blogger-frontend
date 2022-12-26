@@ -10,6 +10,9 @@
                     Sign in to your account
                 </h1>
                 <form (ngSubmit)="submit()" method="post" class="space-y-4 md:space-y-6" action="#" [formGroup]="loginFormGroup">
+                    <div *ngIf="loginError" class="rounded text-[#1e1c28] bg-red-200 p-4">
+                        {{loginError}}
+                    </div>
                     <div>
                         <label 
                         for="email"

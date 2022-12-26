@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { select, Store } from '@ngrx/store';
 import { AuthService } from 'src/app/services/auth.service';
+import { LOGIN } from 'src/app/store/actions/auth.actions';
+import { IAppState } from 'src/app/store/reducers';
+import { SELECT_LOGIN_ERRORS } from 'src/app/store/selectors/auth.selectors';
 
 @Component({
   selector: 'app-login',
@@ -9,10 +13,14 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent implements OnInit {
   loginFormGroup!:FormGroup;
-  constructor(private authService:AuthService) { }
+  loginError?:string = "";
+  constructor(private authService:AuthService, private store:Store<IAppState>) { }
 
   ngOnInit(): void {
     this._initializeFormData();
+    this.store.pipe(select(SELECT_LOGIN_ERRORS)).subscribe(error => {
+      this.loginError = error;
+    })
   }
 
   private _initializeFormData(){
@@ -26,9 +34,7 @@ export class LoginComponent implements OnInit {
     if(this.loginFormGroup.invalid) return;
     
     console.log(this.loginFormGroup.value);
-      this.authService.login(this.loginFormGroup.value).subscribe(data=>{
-        localStorage.setItem("authToken", data.token)
-      });
+      this.store.dispatch(LOGIN(this.loginFormGroup.value));
       
   }
 }

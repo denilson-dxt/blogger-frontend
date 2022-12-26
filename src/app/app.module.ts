@@ -36,6 +36,7 @@ import { PostPreviewComponent } from './components/post-preview/post-preview.com
 import { PostDetailsComponent } from './components/pages/post-details/post-details.component';
 import { PostCommentComponent } from './components/post-comment/post-comment.component';
 import { PostCommentFormComponent } from './components/forms/post-comment-form/post-comment-form.component';
+import { AuthEffect } from './store/effects/auth.effects';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,7 @@ import { PostCommentFormComponent } from './components/forms/post-comment-form/p
     HttpClientModule,
     EditorModule,
     StoreModule.forRoot(reducers, {}),
-    EffectsModule.forRoot([CategoryEffect, TagEffect, PostEffect, FilesEffect]),
+    EffectsModule.forRoot([CategoryEffect, TagEffect, PostEffect, FilesEffect, AuthEffect]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     
   ],
