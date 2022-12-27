@@ -1,7 +1,7 @@
 import { createReducer, on } from "@ngrx/store";
 import { IRegisterError } from "src/app/interfaces/register-error";
 import { IUser } from "src/app/interfaces/user";
-import { LOGIN, LOGIN_FAILURE, LOGIN_SUCCESS, LOGOUT, SIGN_UP_FAILURE, SIGN_UP_SUCCESS, SIGN_UP } from "../actions/auth.actions";
+import { LOGIN, LOGIN_FAILURE, LOGIN_SUCCESS, LOGOUT, SIGN_UP_FAILURE, SIGN_UP_SUCCESS, SIGN_UP, GET_ME, GET_ME_SUCCESS, GET_ME_FAILURE } from "../actions/auth.actions";
 
 export interface IAuthState{
     isAuthenticated:boolean;
@@ -28,6 +28,16 @@ export const authReducer = createReducer(
     }),
     on(LOGIN_FAILURE, (state, {error}) => {
         return {...state, loginErrors: "Invalid credentials", signupErrors: undefined}
+    }),
+
+    on(GET_ME, (state) => {
+        return {...state}
+    }),
+    on(GET_ME_SUCCESS, (state, {user}) => {
+        return {...state, user: user,isAuthenticated: true}
+    }),
+    on(GET_ME_FAILURE, (state, {error}) => {
+        return {...initialState}
     }),
 
     on(LOGOUT, (state) => {

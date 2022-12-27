@@ -24,4 +24,12 @@ export class AuthService {
     
     return this.http.post<IUser>(`${environment.api}/auth/register`, data);
   }
+
+  getMe():Observable<IUser>{
+    return this.http.get<IUser>(`${environment.api}/auth/me`, {
+      headers: {
+        "Authorization": `Bearer ${localStorage.getItem("authToken")}`
+      }
+    });
+  }
 }

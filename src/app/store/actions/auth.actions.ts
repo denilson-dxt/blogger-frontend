@@ -11,4 +11,10 @@ export const SIGN_UP = createAction("[AUTH] sign up", props<{payload: FormData}>
 export const SIGN_UP_SUCCESS = createAction("[AUTH] sign up success", props<{user: IUser}>());
 export const SIGN_UP_FAILURE = createAction("[AUTH] sign up failure", props<{error:any}>());
 
+
+export const GET_ME = createAction("[AUTH] get me");
+export const GET_ME_SUCCESS = createAction("[AUTH] get me success", props<{user:IUser}>());
+export const GET_ME_FAILURE = createAction("[AUTH] get me failure", props<{error:any}>());
+
+
 export const LOGOUT = createAction("[Auth] logout");
