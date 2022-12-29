@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { IPost } from "src/app/interfaces/post";
-import { addComemntFailure, addComment, addCommentSuccess, createPost, createPostFailure, createPostSuccess, deletePost, deletePostFailure, deletePostSuccess, getAllPostFailure, getAllPosts, getAllPostsSuccess, getPostBySlug, getPostBySlugSuccess, setActualPost, setActualPostFailure, updatePost, updatePostFailure, updatePostSuccess } from "../actions/post.actions";
+import { addComemntFailure, addComment, addCommentSuccess, createPost, createPostFailure, createPostSuccess, deletePost, deletePostFailure, deletePostSuccess, getAllPostFailure, getAllPosts, getAllPostsSuccess, getPostBySlug, getPostBySlugSuccess, getPostsByCategory, getPostsByCategoryFailure, getPostsByCategorySuccess, setActualPost, setActualPostFailure, updatePost, updatePostFailure, updatePostSuccess } from "../actions/post.actions";
 
 export interface IPostState{
     posts:IPost[],
@@ -45,6 +45,15 @@ export const postReducer = createReducer(
         return {...state, posts: posts}
     }),
     on(getAllPostFailure, (state, {error})=>{
+        return {...state}
+    }),
+    on(getPostsByCategory, (state) => {
+        return {...state}
+    }),
+    on(getPostsByCategorySuccess, (state, {posts}) => {
+        return {...state, posts: posts}
+    }),
+    on(getPostsByCategoryFailure, (state, {error})=>{
         return {...state}
     }),
 

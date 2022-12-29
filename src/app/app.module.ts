@@ -37,6 +37,7 @@ import { PostDetailsComponent } from './components/pages/post-details/post-detai
 import { PostCommentComponent } from './components/post-comment/post-comment.component';
 import { PostCommentFormComponent } from './components/forms/post-comment-form/post-comment-form.component';
 import { AuthEffect } from './store/effects/auth.effects';
+import { ListPostsByCategoryComponent } from './components/pages/list-posts-by-category/list-posts-by-category.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { AuthEffect } from './store/effects/auth.effects';
     PostPreviewComponent,
     PostDetailsComponent,
     PostCommentComponent,
-    PostCommentFormComponent
+    PostCommentFormComponent,
+    ListPostsByCategoryComponent
   ],
   imports: [
     BrowserModule,

@@ -19,6 +19,11 @@ export const getPostBySlug = createAction("[Post] get post by slug", props<{slug
 export const getPostBySlugSuccess = createAction("[Post] get post by slug success", props<{post: IPost}>());
 export const getPostBySlugFailure = createAction("[Post] get post by slug failure", props<{error: any}>());
 
+export const getPostsByCategory = createAction("[Post] get post by category", props<{categorySlug:string}>());
+export const getPostsByCategorySuccess = createAction("[Post] get post by category success", props<{posts: IPost[]}>());
+export const getPostsByCategoryFailure = createAction("[Post] get post by category failure", props<{error: any}>());
+
+
 export const updatePost = createAction("[Post] update post", props<{post:IPost}>())
 export const updatePostSuccess = createAction("[Post] update post success", props<{post: IPost}>())
 export const updatePostFailure = createAction("[Post] update post failure", props<{error: any}>());

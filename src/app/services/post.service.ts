@@ -38,6 +38,9 @@ export class PostService {
   getPosts(): Observable<IPost[]> {
     return this.http.get<IPost[]>(this._posts_api_url);
   }
+  getPostsByCategory(categorySlug:string): Observable<IPost[]> {
+    return this.http.get<IPost[]>(`${this._posts_api_url}/category/${categorySlug}`);
+  }
 
   getPostBySlug(slug:string):Observable<IPost>{
     return this.http.get<IPost>(`${this._posts_api_url}/${slug}`);
