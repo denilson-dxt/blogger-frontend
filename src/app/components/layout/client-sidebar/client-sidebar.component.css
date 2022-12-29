@@ -9,6 +9,11 @@
 .desc{
     color: #828bae;
 }
+.desc:hover{
+    color: white;
+    transition: all;
+    transition-duration: .2s;
+}
 
 .social-medium-bg{
     background-color: #828bae9a;
@@ -24,4 +29,6 @@
 .tag:hover{
     background-color: rgba(130, 139, 178, 0.5);
     color: white;
+    transition: all;
+    transition-duration: .2s;
 }

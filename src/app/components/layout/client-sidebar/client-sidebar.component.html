@@ -16,9 +16,9 @@
         <hr class="w-full mb-3" >
 
         <div class="w-full">
-            <div *ngFor="let category of categories" class="flex items-center mb-1 hover:text-white cursor-pointer">
+            <div *ngFor="let category of categories" class="flex items-center mb-3  cursor-pointer">
                 <div class="bg-white w-3 mr-6 social-medium-bg h-3"></div>
-                <span class="desc">{{category.description}} <span class="">(57)</span></span>
+                <span class="text-sm capitalize desc ">{{category.description}} <span class="">(57)</span></span>
             </div>
         </div>
     </div>
@@ -27,8 +27,8 @@
         <hr class="w-full mb-3" >
 
         <div class="w-full flex flex-wrap">
-            <div *ngFor="let tag of tags" class="p-1 mr-1 tag w-auto mb-1 hover:text-white cursor-pointer">
-                <span class="w-auto">{{tag.description}}</span>
+            <div *ngFor="let tag of tags" class="p-2 mr-1 tag w-auto mb-1 hover:text-white cursor-pointer">
+                <span class="text-sm capitalize w-auto">{{tag.description}}</span>
             </div>
         </div>
     </div>
