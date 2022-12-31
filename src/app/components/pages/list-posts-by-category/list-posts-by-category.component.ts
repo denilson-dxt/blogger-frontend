@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
+import { ICategory } from 'src/app/interfaces/category';
 import { IPost } from 'src/app/interfaces/post';
 import { getPostsByCategory } from 'src/app/store/actions/post.actions';
 import { IAppState } from 'src/app/store/reducers';
+import { selectAllCategories } from 'src/app/store/selectors/category.selector';
 import { selectAllPosts } from 'src/app/store/selectors/post.selectors';
 
 @Component({
@@ -14,6 +16,7 @@ import { selectAllPosts } from 'src/app/store/selectors/post.selectors';
 export class ListPostsByCategoryComponent implements OnInit {
 
   posts:IPost[] = [];
+  category?:ICategory;
 
   constructor(private store:Store<IAppState>, private router:ActivatedRoute) { }
 
@@ -25,8 +28,13 @@ export class ListPostsByCategoryComponent implements OnInit {
     this.router.params.subscribe(params => {
       let categorySlug:string = params["categorySlug"];
       this.store.dispatch(getPostsByCategory({categorySlug:categorySlug}))
+      
+      this.store.pipe(select(selectAllCategories)).subscribe(categories => {
+        this.category = categories.find(c => c.slug == categorySlug);
+      })
 
     })
+    
   }
 
 }

@@ -1,6 +1,10 @@
-<div class="w-full flex p-12 max-w-screen-xl">
-    <main class="min-w-3/4 flex flex-wrap h-full">
-        <app-post-preview [post]="post" *ngFor="let post of posts" ></app-post-preview>
+<h1 class="w-full text-xl flex p-12">Category: {{category?.description}}</h1>
+<div class="w-full flex p-12 py-2 max-w-screen-xl">
+    <main class="w-3/4">
+        <div class=" flex flex-wrap h-full">
+            <app-post-preview [post]="post" *ngFor="let post of posts"></app-post-preview>
+
+        </div>
     </main>
-    <app-client-sidebar ></app-client-sidebar>
+    <app-client-sidebar></app-client-sidebar>
 </div>

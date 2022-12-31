@@ -17,8 +17,6 @@ posts:IPost[] = [];
   constructor(private store:Store) { }
 
   ngOnInit(): void {
-    this.store.dispatch(getAllCategories())
-    this.store.dispatch(getAllTags())
     this.store.dispatch(getAllPosts());
     this.store.pipe(select(selectAllPosts)).subscribe(posts => {
       this.posts = [...posts];
