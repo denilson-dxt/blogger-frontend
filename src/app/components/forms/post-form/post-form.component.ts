@@ -10,6 +10,7 @@ import { getAllTags } from 'src/app/store/actions/tag.actions';
 import { IAppState } from 'src/app/store/reducers';
 import { selectAllCategories } from 'src/app/store/selectors/category.selector';
 import { selectAllTags } from 'src/app/store/selectors/tag.selectors';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-post-form',
@@ -20,6 +21,7 @@ export class PostFormComponent implements OnInit {
 
   @Input()
   post?: IPost;
+  tinyApiKey:string = environment.tinyApiKey;
 
   @Output()
   onPostFormSubmited = new EventEmitter();

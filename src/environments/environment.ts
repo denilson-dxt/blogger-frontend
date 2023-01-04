@@ -2,9 +2,12 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+import { apiKey } from "./tiny.env";
+
 export const environment = {
   production: false,
-  api:"https://localhost:7040/api"
+  api:"https://localhost:7040/api",
+  tinyApiKey: apiKey
 };
 
 
