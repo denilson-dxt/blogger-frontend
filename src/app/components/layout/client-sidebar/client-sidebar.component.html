@@ -27,9 +27,9 @@
         <hr class="w-full mb-3" >
 
         <div class="w-full flex flex-wrap">
-            <div *ngFor="let tag of tags" class="p-2 mr-1 tag w-auto mb-1 hover:text-white cursor-pointer">
+            <a routerLink="/tag/{{tag.description}}" *ngFor="let tag of tags" class="p-2 mr-1 tag w-auto mb-1 hover:text-white cursor-pointer">
                 <span class="text-sm capitalize w-auto">{{tag.description}}</span>
-            </div>
+            </a>
         </div>
     </div>
 </section>

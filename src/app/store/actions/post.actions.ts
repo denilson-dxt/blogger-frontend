@@ -24,6 +24,10 @@ export const getPostsByCategorySuccess = createAction("[Post] get post by catego
 export const getPostsByCategoryFailure = createAction("[Post] get post by category failure", props<{error: any}>());
 
 
+export const getPostsByTag = createAction("[Post] get posts by tag", props<{tagDescription:string}>());
+export const getPostsByTagSuccess = createAction("[Post] get posst by tag success", props<{posts: IPost[]}>());
+export const getPostsByTagFailure = createAction("[Post] get posst by tag failure", props<{error:any}>());
+
 export const updatePost = createAction("[Post] update post", props<{post:IPost}>())
 export const updatePostSuccess = createAction("[Post] update post success", props<{post: IPost}>())
 export const updatePostFailure = createAction("[Post] update post failure", props<{error: any}>());

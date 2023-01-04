@@ -32,7 +32,6 @@ export class ListPostsByCategoryComponent implements OnInit {
       this.store.pipe(select(selectAllCategories)).subscribe(categories => {
         this.category = categories.find(c => c.slug == categorySlug);
       })
-
     })
     
   }

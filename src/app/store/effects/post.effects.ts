@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { catchError, exhaustMap, map, of } from "rxjs";
 import { CommentService } from "src/app/services/comment.service";
 import { PostService } from "src/app/services/post.service";
-import { addComemntFailure, addComment, addCommentSuccess, createPost, createPostFailure, createPostSuccess, deletePost, deletePostFailure, deletePostSuccess, getAllPostFailure, getAllPosts, getAllPostsSuccess, getPostsByCategory, getPostsByCategoryFailure, getPostsByCategorySuccess, updatePost, updatePostFailure, updatePostSuccess } from "../actions/post.actions";
+import { addComemntFailure, addComment, addCommentSuccess, createPost, createPostFailure, createPostSuccess, deletePost, deletePostFailure, deletePostSuccess, getAllPostFailure, getAllPosts, getAllPostsSuccess, getPostsByCategory, getPostsByCategoryFailure, getPostsByCategorySuccess, getPostsByTag, getPostsByTagFailure, getPostsByTagSuccess, updatePost, updatePostFailure, updatePostSuccess } from "../actions/post.actions";
 
 @Injectable()
 export class PostEffect {
@@ -47,6 +47,18 @@ export class PostEffect {
                 return this.postService.getPostsByCategory(actions.categorySlug).pipe(
                     map(posts => getPostsByCategorySuccess({ posts: posts })),
                     catchError(error => of(getPostsByCategoryFailure({ error: error })))
+                )
+            })
+        )
+    })
+
+    getPostsByTag$ = createEffect(() => {
+       return this.actions$.pipe(
+            ofType(getPostsByTag),
+            exhaustMap(actions => {
+                return this.postService.getPostsByTag(actions.tagDescription).pipe(
+                    map(posts => getPostsByTagSuccess({posts: posts})),
+                    catchError(error => of(getPostsByTagFailure({error: error})))
                 )
             })
         )
