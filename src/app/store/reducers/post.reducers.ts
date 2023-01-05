@@ -3,12 +3,18 @@ import { IPost } from "src/app/interfaces/post";
 import { addComemntFailure, addComment, addCommentSuccess, createPost, createPostFailure, createPostSuccess, deletePost, deletePostFailure, deletePostSuccess, getAllPostFailure, getAllPosts, getAllPostsSuccess, getPostBySlug, getPostBySlugSuccess, getPostsByCategory, getPostsByCategoryFailure, getPostsByCategorySuccess, getPostsByTag, getPostsByTagFailure, getPostsByTagSuccess, setActualPost, setActualPostFailure, updatePost, updatePostFailure, updatePostSuccess } from "../actions/post.actions";
 
 export interface IPostState{
-    posts:IPost[],
-    actualPost?:IPost,
+    posts:IPost[];
+    actualPost?:IPost;
+    actualPage: number;
+    maxPostsPerPage:number;
+    totalPosts: number;
 }
 
 const initialState:IPostState = {
     posts:[],
+    actualPage: 1,
+    maxPostsPerPage: 5,
+    totalPosts: 0
 }
 
 export const postReducer = createReducer(
@@ -41,8 +47,8 @@ export const postReducer = createReducer(
     on(getAllPosts, (state) => {
         return {...state}
     }),
-    on(getAllPostsSuccess, (state, {posts}) => {
-        return {...state, posts: posts}
+    on(getAllPostsSuccess, (state, {posts, paginationInfo}) => {
+        return {...state, posts: posts, actualPage: paginationInfo.ActualPage, totalPosts: paginationInfo.TotalPosts, maxPostsPerPage: paginationInfo.MaxPostsPerPage}
     }),
     on(getAllPostFailure, (state, {error})=>{
         return {...state}

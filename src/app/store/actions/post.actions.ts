@@ -12,7 +12,7 @@ export const setActualPostSuccess = createAction("[POST] set actual post success
 export const setActualPostFailure = createAction("[POST] set actual post failure", props<{error:any}>());
 
 export const getAllPosts = createAction("[Post] get all posts");
-export const getAllPostsSuccess = createAction("[Post] get all posts success", props<{posts: IPost[]}>());
+export const getAllPostsSuccess = createAction("[Post] get all posts success", props<{posts: IPost[], paginationInfo: {TotalPosts:number, ActualPage:number, MaxPostsPerPage:number}}>());
 export const getAllPostFailure = createAction("[Post] get all posts failure", props<{error: any}>());
 
 export const getPostBySlug = createAction("[Post] get post by slug", props<{slug:string}>());

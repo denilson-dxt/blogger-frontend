@@ -7,7 +7,7 @@ import { addComemntFailure, addComment, addCommentSuccess, createPost, createPos
 
 @Injectable()
 export class PostEffect {
-    constructor(private postService: PostService,private commentService:CommentService, private actions$: Actions) { }
+    constructor(private postService: PostService, private commentService: CommentService, private actions$: Actions) { }
 
     createPost$ = createEffect(() => this.actions$.pipe(
         ofType(createPost),
@@ -19,12 +19,12 @@ export class PostEffect {
         })
     ))
 
-    updatePost = createEffect(()=>{
+    updatePost = createEffect(() => {
         return this.actions$.pipe(
             ofType(updatePost),
             exhaustMap(actions => this.postService.updatePost(actions.post).pipe(
-                map(post => updatePostSuccess({post: post})),
-                catchError(error => of(updatePostFailure({error: error})))
+                map(post => updatePostSuccess({ post: post })),
+                catchError(error => of(updatePostFailure({ error: error })))
             ))
         )
     })
@@ -34,7 +34,14 @@ export class PostEffect {
             ofType(getAllPosts),
             exhaustMap(actions => {
                 return this.postService.getPosts().pipe(
-                    map(posts => getAllPostsSuccess({ posts: posts })),
+                    map(response => {
+                        let paginationInfo = JSON.parse(response.headers.get('x-pagination'));
+
+                        return getAllPostsSuccess({
+                            posts: response.body,
+                            paginationInfo:  paginationInfo
+                        })
+                    }),
                     catchError(error => of(getAllPostFailure({ error: error })))
                 )
             })
@@ -53,12 +60,12 @@ export class PostEffect {
     })
 
     getPostsByTag$ = createEffect(() => {
-       return this.actions$.pipe(
+        return this.actions$.pipe(
             ofType(getPostsByTag),
             exhaustMap(actions => {
                 return this.postService.getPostsByTag(actions.tagDescription).pipe(
-                    map(posts => getPostsByTagSuccess({posts: posts})),
-                    catchError(error => of(getPostsByTagFailure({error: error})))
+                    map(posts => getPostsByTagSuccess({ posts: posts })),
+                    catchError(error => of(getPostsByTagFailure({ error: error })))
                 )
             })
         )
@@ -77,9 +84,9 @@ export class PostEffect {
     addComment$ = createEffect(() => this.actions$.pipe(
         ofType(addComment),
         exhaustMap(actions => {
-            return this.commentService.postComment({postId: actions.postId, content: actions.content}).pipe(
-                map(comment => addCommentSuccess({postId: actions.postId, comment: comment})),
-                catchError(error => of(addComemntFailure({error: error})))
+            return this.commentService.postComment({ postId: actions.postId, content: actions.content }).pipe(
+                map(comment => addCommentSuccess({ postId: actions.postId, comment: comment })),
+                catchError(error => of(addComemntFailure({ error: error })))
             )
         })
     ))
