@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
+import { Observable, of } from 'rxjs';
 import { IPost } from 'src/app/interfaces/post';
 import { getAllCategories } from 'src/app/store/actions/category.actions';
-import { getAllPosts } from 'src/app/store/actions/post.actions';
+import { changePagination, getAllPosts } from 'src/app/store/actions/post.actions';
 import { getAllTags } from 'src/app/store/actions/tag.actions';
-import { selectAllPosts } from 'src/app/store/selectors/post.selectors';
+import { IPaginationState } from 'src/app/store/reducers/post.reducers';
+import {selectAllPosts, selectPostsPagination} from 'src/app/store/selectors/post.selectors';
 
 @Component({
   selector: 'app-home',
@@ -13,14 +15,31 @@ import { selectAllPosts } from 'src/app/store/selectors/post.selectors';
 })
 export class HomeComponent implements OnInit {
 
-posts:IPost[] = [];
-  constructor(private store:Store) { }
+  posts: IPost[] = [];
+  pagination:IPaginationState = {
+    actualPage: 1,
+    totalPosts: 0,
+    maxPostsPerPage: 0
+  };
+  constructor(private store: Store) { }
 
   ngOnInit(): void {
-    this.store.dispatch(getAllPosts());
+    this.getPosts();
     this.store.pipe(select(selectAllPosts)).subscribe(posts => {
       this.posts = [...posts];
     })
+    this.store.pipe(select(selectPostsPagination)).subscribe(pagination => {
+      this.pagination = pagination;
+    });
   }
 
+  async onPageChange(event:any){
+    console.log(event);
+    
+    this.store.dispatch(changePagination({pagination: {actualPage: event.page+1, totalPosts: 0, maxPostsPerPage: 3}}))
+  }
+  getPosts():void{
+    this.store.dispatch(getAllPosts());
+
+  }
 }

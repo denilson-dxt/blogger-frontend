@@ -1,20 +1,25 @@
 import { createReducer, on } from "@ngrx/store";
 import { IPost } from "src/app/interfaces/post";
-import { addComemntFailure, addComment, addCommentSuccess, createPost, createPostFailure, createPostSuccess, deletePost, deletePostFailure, deletePostSuccess, getAllPostFailure, getAllPosts, getAllPostsSuccess, getPostBySlug, getPostBySlugSuccess, getPostsByCategory, getPostsByCategoryFailure, getPostsByCategorySuccess, getPostsByTag, getPostsByTagFailure, getPostsByTagSuccess, setActualPost, setActualPostFailure, updatePost, updatePostFailure, updatePostSuccess } from "../actions/post.actions";
+import { addComemntFailure, addComment, addCommentSuccess, changePagination, createPost, createPostFailure, createPostSuccess, deletePost, deletePostFailure, deletePostSuccess, getAllPostFailure, getAllPosts, getAllPostsSuccess, getPostBySlug, getPostBySlugSuccess, getPostsByCategory, getPostsByCategoryFailure, getPostsByCategorySuccess, getPostsByTag, getPostsByTagFailure, getPostsByTagSuccess, setActualPost, setActualPostFailure, updatePost, updatePostFailure, updatePostSuccess } from "../actions/post.actions";
 
+export interface IPaginationState{
+    actualPage: number;
+    maxPostsPerPage: number;
+    totalPosts: number;
+}
 export interface IPostState{
     posts:IPost[];
     actualPost?:IPost;
-    actualPage: number;
-    maxPostsPerPage:number;
-    totalPosts: number;
+    pagination:IPaginationState
 }
 
 const initialState:IPostState = {
     posts:[],
-    actualPage: 1,
-    maxPostsPerPage: 5,
-    totalPosts: 0
+    pagination: {
+        actualPage: 1,
+        maxPostsPerPage: 3,
+        totalPosts: 0
+    }
 }
 
 export const postReducer = createReducer(
@@ -48,7 +53,7 @@ export const postReducer = createReducer(
         return {...state}
     }),
     on(getAllPostsSuccess, (state, {posts, paginationInfo}) => {
-        return {...state, posts: posts, actualPage: paginationInfo.ActualPage, totalPosts: paginationInfo.TotalPosts, maxPostsPerPage: paginationInfo.MaxPostsPerPage}
+        return {...state, posts: posts, pagination: {...state.pagination,actualPage: paginationInfo.ActualPage, maxPostsPerPage: paginationInfo.MaxPostsPerPage, totalPosts: paginationInfo.TotalPosts}}
     }),
     on(getAllPostFailure, (state, {error})=>{
         return {...state}
@@ -98,5 +103,9 @@ export const postReducer = createReducer(
     }),
     on(addComemntFailure, (state) => {
         return {...state}
+    }),
+
+    on(changePagination, (state, {pagination}) => {
+        return {...state, pagination: {...state.pagination, actualPage: pagination.actualPage}}
     })
 )

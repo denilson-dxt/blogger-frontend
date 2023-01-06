@@ -39,6 +39,9 @@ import { PostCommentFormComponent } from './components/forms/post-comment-form/p
 import { AuthEffect } from './store/effects/auth.effects';
 import { ListPostsByCategoryComponent } from './components/pages/list-posts-by-category/list-posts-by-category.component';
 import { ListPostsByTagComponent } from './components/pages/list-posts-by-tag/list-posts-by-tag.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {PaginatorModule} from "primeng/paginator"; 
 
 @NgModule({
   declarations: [
@@ -77,6 +80,10 @@ import { ListPostsByTagComponent } from './components/pages/list-posts-by-tag/li
     StoreModule.forRoot(reducers, {}),
     EffectsModule.forRoot([CategoryEffect, TagEffect, PostEffect, FilesEffect, AuthEffect]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    BrowserAnimationsModule,
+    MatPaginatorModule,
+    PaginatorModule
+    
     
   ],
   providers: [],

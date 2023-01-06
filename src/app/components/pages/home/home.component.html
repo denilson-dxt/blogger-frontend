@@ -1,6 +1,12 @@
 <div class="w-full flex p-12 max-w-screen-xl">
-    <main class="w-3/4 flex flex-wrap h-full">
-        <app-post-preview [post]="post" *ngFor="let post of posts" ></app-post-preview>
+    <main class="">
+        <div class="flex flex-wrap h-full">
+            <app-post-preview [post]="post" *ngFor="let post of posts"></app-post-preview>
+        </div>
+        <div *ngIf="pagination.totalPosts" class="mb-4 flex items-center pb-2 justify-center">
+            <p-paginator [rows]="5"  [totalRecords]="pagination.totalPosts" (onPageChange)="onPageChange($event)"></p-paginator>
+        </div>
+        
     </main>
-    <app-client-sidebar ></app-client-sidebar>
+    <app-client-sidebar></app-client-sidebar>
 </div>

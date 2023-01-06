@@ -1,6 +1,7 @@
 import { createAction, props } from "@ngrx/store";
 import { IComment } from "src/app/interfaces/comment";
 import { IPost } from "src/app/interfaces/post";
+import { IPaginationState } from "../reducers/post.reducers";
 
 export const createPost = createAction("[POST] create post", props<{post:any}>());
 export const createPostSuccess = createAction("[POST] create post success", props<{post:IPost}>())
@@ -40,3 +41,6 @@ export const deletePostFailure = createAction("[Post] delete  post failure", pro
 export const addComment = createAction("[Post] add comment", props<{postId:string, content:string}>());
 export const addCommentSuccess = createAction("[Post] add comment success", props<{postId:string, comment:IComment}>());
 export const addComemntFailure = createAction("[Post] add comment failure", props<{error:any}>());
+
+export const changePagination = createAction("[Post] change pagination", props<{pagination: IPaginationState}>());
+export const changePaginationSuccess = createAction("[Post] change pagination success");

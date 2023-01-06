@@ -1,13 +1,16 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { catchError, exhaustMap, map, of } from "rxjs";
+import { Store } from "@ngrx/store";
+import { catchError, exhaustMap, map, of, switchMap, take, tap } from "rxjs";
 import { CommentService } from "src/app/services/comment.service";
 import { PostService } from "src/app/services/post.service";
-import { addComemntFailure, addComment, addCommentSuccess, createPost, createPostFailure, createPostSuccess, deletePost, deletePostFailure, deletePostSuccess, getAllPostFailure, getAllPosts, getAllPostsSuccess, getPostsByCategory, getPostsByCategoryFailure, getPostsByCategorySuccess, getPostsByTag, getPostsByTagFailure, getPostsByTagSuccess, updatePost, updatePostFailure, updatePostSuccess } from "../actions/post.actions";
+import { addComemntFailure, addComment, addCommentSuccess, changePagination, changePaginationSuccess, createPost, createPostFailure, createPostSuccess, deletePost, deletePostFailure, deletePostSuccess, getAllPostFailure, getAllPosts, getAllPostsSuccess, getPostsByCategory, getPostsByCategoryFailure, getPostsByCategorySuccess, getPostsByTag, getPostsByTagFailure, getPostsByTagSuccess, updatePost, updatePostFailure, updatePostSuccess } from "../actions/post.actions";
+import { IAppState } from "../reducers";
+import {selectPostsPagination } from "../selectors/post.selectors";
 
 @Injectable()
 export class PostEffect {
-    constructor(private postService: PostService, private commentService: CommentService, private actions$: Actions) { }
+    constructor(private store:Store<IAppState>,private postService: PostService, private commentService: CommentService, private actions$: Actions) { }
 
     createPost$ = createEffect(() => this.actions$.pipe(
         ofType(createPost),
@@ -31,22 +34,44 @@ export class PostEffect {
 
     getAllPosts$ = createEffect(() => {
         return this.actions$.pipe(
-            ofType(getAllPosts),
-            exhaustMap(actions => {
-                return this.postService.getPosts().pipe(
-                    map(response => {
-                        let paginationInfo = JSON.parse(response.headers.get('x-pagination'));
-
-                        return getAllPostsSuccess({
-                            posts: response.body,
-                            paginationInfo:  paginationInfo
-                        })
-                    }),
-                    catchError(error => of(getAllPostFailure({ error: error })))
-                )
-            })
+          ofType(getAllPosts),
+        
+          switchMap(actions => {
+            return this.store.select(selectPostsPagination).pipe(
+              take(1),
+              switchMap(pagination => {
+                return this.postService.getPosts(pagination.actualPage, pagination.maxPostsPerPage).pipe(
+                  map(response => {
+                    let paginationInfo = JSON.parse(response.headers.get('x-pagination'));
+                    return getAllPostsSuccess({
+                      posts: response.body,
+                      paginationInfo: paginationInfo,
+                    });
+                  }),
+                  catchError(error => of(getAllPostFailure({ error: error })))
+                );
+              })
+            );
+          })
+        );
+      });
+    
+    changePagination$ = createEffect(() => {
+        return this.actions$.pipe(
+            ofType(changePagination),
+            exhaustMap(() => of(changePaginationSuccess()))
         )
     })
+
+    changePaginationSucess$ = createEffect(() => {
+        return this.actions$.pipe(
+            ofType(changePaginationSuccess),
+            tap(actions => {
+                return this.store.dispatch(getAllPosts())
+            })
+        )
+    }, {dispatch: false})
+
     getAllPostsByCategory$ = createEffect(() => {
         return this.actions$.pipe(
             ofType(getPostsByCategory),

@@ -35,8 +35,8 @@ export class PostService {
 
 
 
-  getPosts(): Observable<any> {
-    return this.http.get<any>(this._posts_api_url, {
+  getPosts(page:number,maxPostsPerPage:number): Observable<any> {
+    return this.http.get<any>(`${this._posts_api_url}?page=${page}&maxPerPage=${maxPostsPerPage}`, {
       observe: 'response'
     });
   }
