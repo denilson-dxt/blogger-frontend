@@ -1,3 +1,4 @@
+import { ViewportScroller } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
@@ -21,7 +22,7 @@ export class HomeComponent implements OnInit {
     totalPosts: 0,
     maxPostsPerPage: 0
   };
-  constructor(private store: Store) { }
+  constructor(private store: Store, private viewPort:ViewportScroller) { }
 
   ngOnInit(): void {
     this.getPosts();
@@ -37,9 +38,10 @@ export class HomeComponent implements OnInit {
     console.log(event);
     
     this.store.dispatch(changePagination({pagination: {actualPage: event.page+1, totalPosts: 0, maxPostsPerPage: 3}}))
+    this.viewPort.scrollToPosition([0, 0]);
   }
   getPosts():void{
     this.store.dispatch(getAllPosts());
-
+    
   }
 }
